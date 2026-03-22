@@ -1,17 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) {
+        setMessage('Login erfolgreich')
+      }
+    })
+  }, [])
 
   const login = async () => {
-    await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     })
+
+    if (error) {
+      setMessage('Fehler: ' + error.message)
+      return
+    }
+
+    if (data.session) {
+      setMessage('Login erfolgreich')
+    }
   }
 
   return (
@@ -32,6 +50,9 @@ export default function Home() {
       <br /><br />
 
       <button onClick={login}>Login</button>
+
+      <br /><br />
+      <div>{message}</div>
     </main>
   )
 }
