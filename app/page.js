@@ -1,20 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) {
-        setMessage('Login erfolgreich')
-      }
-    })
-  }, [])
 
   const login = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
