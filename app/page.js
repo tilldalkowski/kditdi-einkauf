@@ -35,6 +35,7 @@ export default function Home() {
         <div style={{ display: 'flex', gap: 12 }}>
           <a href="/lebensmittel">Lebensmittel</a>
           <a href="/drogerie">Drogerie</a>
+          <a href="/apotheke">Apotheke</a>
           <a href="/sonstiges">Sonstiges</a>
         </div>
       </main>
