@@ -29,7 +29,7 @@ export default function Home() {
   if (session) {
     return (
       <main style={{ padding: 40 }}>
-        <h1>Dalkowski Einkaufszettel</h1>
+        <h1>Kati & Tills Einkaufszettel</h1>
         <p>Willkommen.</p>
 
         <div style={{ display: 'flex', gap: 12 }}>
@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <main style={{ padding: 40 }}>
-      <h1>Dalkowski Einkaufszettel</h1>
+      <h1>Kati & Tills Einkaufszettel</h1>
 
       <input
         placeholder="Email"
