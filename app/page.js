@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabaseClient'
 export default function Home() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [session, setSession] = useState(null)
   const [message, setMessage] = useState('')
 
   const login = async () => {
@@ -20,8 +21,24 @@ export default function Home() {
     }
 
     if (data.session) {
-      setMessage('Login erfolgreich')
+      setSession(data.session)
+      setMessage('')
     }
+  }
+
+  if (session) {
+    return (
+      <main style={{ padding: 40 }}>
+        <h1>Dalkowski Einkaufszettel</h1>
+        <p>Willkommen.</p>
+
+        <div style={{ display: 'flex', gap: 12 }}>
+          <a href="/lebensmittel">Lebensmittel</a>
+          <a href="/drogerie">Drogerie</a>
+          <a href="/sonstiges">Sonstiges</a>
+        </div>
+      </main>
+    )
   }
 
   return (
